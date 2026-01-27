@@ -63,6 +63,7 @@ Status: unreleased.
 - Build: align memory-core peer dependency with lockfile.
 - Security: add mDNS discovery mode with minimal default to reduce information disclosure. (#1882) Thanks @orlyjamie.
 - Security: harden URL fetches with DNS pinning to reduce rebinding risk. Thanks Chris Zheng.
+- Gateway: sanitize error responses to prevent information disclosure. (#2387) Thanks @robbyczgw-cla.
 - Web UI: improve WebChat image paste previews and allow image-only sends. (#1925) Thanks @smartprogrammer93.
 - Security: wrap external hook content by default with a per-hook opt-out. (#1827) Thanks @mertcicekci0.
 - Gateway: default auth now fail-closed (token/password required; Tailscale Serve identity remains allowed).
