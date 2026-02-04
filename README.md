@@ -1,3 +1,58 @@
+Local LLM  issues
+
+```
+Great question. Let me clarify the distinction:                               
+                                                                                
+  Two separate things:                                                          
+  Column 1: What                                                                
+  Model Weights: Trained knowledge (parameters)                                 
+  Context Window: Current conversation text                                     
+  ────────────────────────────────────────                                      
+  Column 1: Size                                                                
+  Model Weights: 7B, 70B, 405B params                                           
+  Context Window: 4K, 32K, 128K tokens                                          
+  ────────────────────────────────────────                                      
+  Column 1: Storage                                                             
+  Model Weights: Disk → GPU/RAM                                                 
+  Context Window: RAM/VRAM during inference                                     
+  ────────────────────────────────────────                                      
+  Column 1: Analogy                                                             
+  Model Weights: Education (what you learned in school)                         
+  Context Window: Working memory (what you're thinking about right now)         
+  ---                                                                           
+  Why context window is limited:                                                
+                                                                                
+  You → [prompt: 50K tokens] → Model → [output]                                 
+                  ↓                                                             
+          Attention mechanism                                                   
+          computes relationships                                                
+          between ALL token pairs                                               
+                  ↓                                                             
+          50K × 50K = 2.5 billion calculations                                  
+          (quadratic scaling)                                                   
+                                                                                
+  The bottleneck is VRAM/compute, not storage:                                  
+                                                                                
+  - 8K context → ~2GB VRAM for attention                                        
+  - 32K context → ~8GB VRAM                                                     
+  - 128K context → ~32GB+ VRAM                                                  
+  - Each output token requires processing the ENTIRE context                    
+                                                                                
+  It's not about "storing" the conversation — it's about the model needing to   
+  compute attention across all tokens simultaneously during each generation     
+  step.                                                                         
+                                                                                
+  ---                                                                           
+  Simple analogy:                                                               
+  - Model weights = books you've read (permanent)                               
+  - Context window = how many pages you can hold open and read at once (limited 
+  by your hands/desk space)                                                     
+                                                                                
+  Having read many books doesn't let you hold more pages open simultaneously.   
+                                                                                
+  Does that clarify?                             
+```
+
 # 🦞 Clawdbot — Personal AI Assistant
 
 <p align="center">
